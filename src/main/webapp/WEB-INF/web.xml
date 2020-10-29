@@ -4,4 +4,13 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>hello</servlet-name>
+    <servlet-class>world.ucode.testServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>hello</servlet-name>
+    <url-pattern>/nahuiPowel</url-pattern>
+  </servlet-mapping>
 </web-app>
