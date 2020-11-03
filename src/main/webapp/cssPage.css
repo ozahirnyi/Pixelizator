@@ -1,0 +1,20 @@
+.childDiv {
+    height: 777px;
+    width: 777px;
+    border-style: dotted;
+    background-color: lightpink;
+}
+
+.mainDiv {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    background: linear-gradient(to right, green, yellow);
+}
+
+.form {
+    padding: 10px;
+}
