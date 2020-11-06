@@ -12,7 +12,7 @@
     <h1>Poisk Mnogo CHLENOV|3======D</h1>
         <div>
             <h3> Choose File to Upload in Server </h3>
-            <input type="file" name="file" id="inputFile" onchange="readURL(this)"/>
+            <input type="file" name="file" id="inputFile"/>
             <button id="applyButton">SuckMaBolz</button>
         </div>
         <br>
