@@ -8,20 +8,18 @@
 </head>
 
 <body>
-<%--    <script src="js/readURL.js"></script>--%>
     <h1>Poisk Mnogo CHLENOV|3======D</h1>
         <div>
             <h3> Choose File to Upload in Server </h3>
-            <input type="file" name="file" id="inputFile"/>
+            <label class="forformelem " name="UPLOAD" for="fileUploader">Choose images to upload (PNG, JPG)</label>
+            <input type="file" value="upload" id="fileUploader" name="file" accept=".jpg, .jpeg, .png">
             <button id="applyButton">SuckMaBolz</button>
         </div>
         <br>
-        <p class="text">Block size: </p>
-        <p class="text" id="outNumber">10</p>
         <div class="mainDiv">
             <div class="contentImg">
-                <img class="im" id="forInput" src="#" alt="imageInput">
-                <img class="im" id="forOutput" src="" alt="imageOutput">
+                <img class="im" id="forInput" src="images/ozahirnyi.png" alt="imageInput">
+                <img class="im" id="forOutput" src="images/ozahirnyi.png" alt="imageOutput">
             </div>
         </div>
     <script src="js/fetch.js"></script>

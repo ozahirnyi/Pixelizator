@@ -37,6 +37,11 @@ public class Servlet extends HttpServlet {
         inputStream = part.getInputStream();
         picture = new Picture();
 
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("KEY", "VALUE");
+//        String str = jsonObject.toString();
+//        printWriter.print(str);
+//        printWriter.close();
 
         bufferedImage = ImageIO.read(inputStream);
 //        Raster raster = bufferedImage.getData();
@@ -48,18 +53,10 @@ public class Servlet extends HttpServlet {
         imageInString = Base64.encodeBase64String(bytes);
         picture.setImage(imageInString);
         String json = gson.toJson(picture);
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
         printWriter.print(json);
         printWriter.close();
-
-
-
-
-
-
-
-
-
-
 
         //        byte[] bytes = new byte[1024];
 //        int readFileExepction = 0;

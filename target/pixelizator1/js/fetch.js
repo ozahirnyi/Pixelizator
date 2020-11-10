@@ -1,19 +1,25 @@
 const url = 'http://localhost:8080/upload';
-const data = { username: 'example' };
+var imgOut = document.getElementById("forOutput")
 
 document.getElementById("applyButton").addEventListener('click', async function () {
+    const formData = new FormData();
+    const fileField = document.querySelector('input[type="file"]');
+
+    formData.append("file", fileField.files[0]);
     try {
-        const response = await fetch(url, {
-            method: 'POST', // или 'PUT'
-            body: JSON.stringify(data), // данные могут быть 'строкой' или {объектом}!
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        let response = await fetch(url, {
+            method: 'POST',
+            body: formData,
+            enctype: "multipart/form-data"
         });
-        alert("YA EBU11")
-        const json = await response.json();
-        console.log('Ne Zhopa', json);
-    } catch (error) {
-        console.error('Zhopa', error);
+        if (response.ok) {
+            alert("YA EBU11")
+            const json = await response.json();
+            console.log('Ne Zhopa', json);
+            imgOut.src = "data:image/png;base64," + response.imageForOutput;
+        }
+    }
+    catch (error) {
+        console.error('Ya ebu', error);
     }
 });
