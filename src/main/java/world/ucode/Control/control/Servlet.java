@@ -51,6 +51,7 @@ public class Servlet extends HttpServlet {
         ImageIO.write(bufferedImage, "png", baos);
         bytes = baos.toByteArray();
         imageInString = Base64.encodeBase64String(bytes);
+        System.out.println(imageInString);
         picture.setImage(imageInString);
         String json = gson.toJson(picture);
         resp.setContentType("application/json");

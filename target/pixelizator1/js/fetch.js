@@ -16,7 +16,7 @@ document.getElementById("applyButton").addEventListener('click', async function 
             alert("YA EBU11")
             const json = await response.json();
             console.log('Ne Zhopa', json);
-            imgOut.src = "data:image/png;base64," + response.imageForOutput;
+            imgOut.setAttribute("src", "data:image/png;base64," + json.imageForOutput);
         }
     }
     catch (error) {
