@@ -1,4 +1,4 @@
-package world.ucode.Control.model;
+package world.ucode.Model;
 
 public class Picture {
     private String imageForOutput;

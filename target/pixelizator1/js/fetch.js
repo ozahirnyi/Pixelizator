@@ -1,5 +1,11 @@
 const url = 'http://localhost:8080/upload';
 var imgOut = document.getElementById("forOutput")
+var imgIn = document.getElementById("forInput")
+fileUploader.addEventListener('change', updateImageDisplay);
+
+function updateImageDisplay() {
+    imgIn.src = window.URL.createObjectURL(input.files[0]);
+}
 
 document.getElementById("applyButton").addEventListener('click', async function () {
     const formData = new FormData();
