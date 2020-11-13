@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
 import java.io.*;
 import com.google.gson.Gson;
 import org.json.simple.JSONObject;
@@ -40,8 +42,28 @@ public class Servlet extends HttpServlet {
         printWriter.close();
     }
 
+    private BufferedImage pixelizatingImage(InputStream inputStream) throws IOException {
+        BufferedImage bufferedImage = ImageIO.read(inputStream);
+        Raster src = bufferedImage.getData();
+        WritableRaster dest = src.createCompatibleWritableRaster();
+
+        for (int y = 0; y < src.getHeight(); y += 5) {
+            for (int x = 0; x < src.getWidth(); x += 5) {
+                double[] pixel = new double[4];
+                pixel = src.getPixel(x, y, pixel);
+                for (int yd = y; (yd < y + 5) && (yd < dest.getHeight()); yd++) {
+                    for (int xd = x; (xd < x + 5) && (xd < dest.getWidth()); xd++) {
+                        dest.setPixel(xd, yd, pixel);
+                    }
+                }
+            }
+        }
+        bufferedImage.setData(dest);
+        return bufferedImage;
+    }
+
     String imageBytesToJson(Part part) throws IOException {
-        BufferedImage bufferedImage;
+        BufferedImage bufferedImage = null;
         String imageInString;
         Picture picture;
         byte[] bytes;
@@ -49,7 +71,8 @@ public class Servlet extends HttpServlet {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         inputStream = part.getInputStream();
         picture = new Picture();
-        bufferedImage = ImageIO.read(inputStream);
+
+        bufferedImage = pixelizatingImage(inputStream);
 
         ImageIO.write(bufferedImage, "png", baos);
 
