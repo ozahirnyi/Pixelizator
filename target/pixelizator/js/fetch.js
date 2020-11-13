@@ -3,8 +3,8 @@ var imgOut = document.getElementById("forOutput")
 var imgIn = document.getElementById("forInput")
 fileUploader.addEventListener('change', updateImageDisplay);
 
-function updateImageDisplay() {
-    imgIn.src = window.URL.createObjectURL(input.files[0]);
+function updateImageDisplay(event) {
+    imgIn.src = URL.createObjectURL(event.target.files[0]);
 }
 
 document.getElementById("applyButton").addEventListener('click', async function () {

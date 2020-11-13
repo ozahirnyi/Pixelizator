@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import com.google.gson.Gson;
+import org.json.simple.JSONObject;
 import world.ucode.Model.Picture;
 
 @WebServlet("/upload")

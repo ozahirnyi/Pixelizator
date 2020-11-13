@@ -5,13 +5,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>world.ucode</groupId>
-  <artifactId>pixelizator1</artifactId>
+  <artifactId>pixelizator</artifactId>
   <version>1.0-WEB</version>
   <packaging>war</packaging>
 
-  <name>pixelizator1 Maven Webapp</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <name>pixelizator</name>
+  <url>http://localhost:8080/</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -50,7 +49,7 @@
   </dependencies>
 
   <build>
-    <finalName>pixelizator1</finalName>
+    <finalName>pixelizator</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>

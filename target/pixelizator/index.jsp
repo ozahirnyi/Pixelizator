@@ -12,7 +12,7 @@
         <div>
             <h3> Choose File to Upload in Server </h3>
             <label class="forformelem " name="UPLOAD" for="fileUploader">Choose images to upload (PNG, JPG)</label>
-            <input type="file" value="upload" id="fileUploader" name="file" accept=".jpg, .jpeg, .png">
+            <input type="file" value="upload" id="fileUploader" name="file" accept=".jpg, .jpeg, .png" onchange="updateImageDisplay(event)">
             <button id="applyButton">SuckMaBolz</button>
         </div>
         <br>
