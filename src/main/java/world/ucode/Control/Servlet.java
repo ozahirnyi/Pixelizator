@@ -14,20 +14,13 @@ import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
 import java.io.*;
 import com.google.gson.Gson;
-import org.json.simple.JSONObject;
 import world.ucode.Model.Picture;
 
 @WebServlet("/upload")
 @MultipartConfig
 public class Servlet extends HttpServlet {
     private Gson gson = new Gson();
-//    private BufferedImage bufferedImage;
-//    private String imageInString;
-//    private Picture picture;
-//    private byte[] bytes;
-//    private InputStream inputStream;
     private PrintWriter printWriter;
-//    ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,12 +40,12 @@ public class Servlet extends HttpServlet {
         Raster src = bufferedImage.getData();
         WritableRaster dest = src.createCompatibleWritableRaster();
 
-        for (int y = 0; y < src.getHeight(); y += 5) {
-            for (int x = 0; x < src.getWidth(); x += 5) {
+        for (int y = 0; y < src.getHeight(); y += 1) {
+            for (int x = 0; x < src.getWidth(); x += 1) {
                 double[] pixel = new double[4];
                 pixel = src.getPixel(x, y, pixel);
-                for (int yd = y; (yd < y + 5) && (yd < dest.getHeight()); yd++) {
-                    for (int xd = x; (xd < x + 5) && (xd < dest.getWidth()); xd++) {
+                for (int yd = y; (yd < y + 1) && (yd < dest.getHeight()); yd++) {
+                    for (int xd = x; (xd < x + 1) && (xd < dest.getWidth()); xd++) {
                         dest.setPixel(xd, yd, pixel);
                     }
                 }
@@ -62,19 +55,19 @@ public class Servlet extends HttpServlet {
         return bufferedImage;
     }
 
-    String imageBytesToJson(Part part) throws IOException {
+    private String imageBytesToJson(Part part) throws IOException {
         BufferedImage bufferedImage = null;
         String imageInString;
         Picture picture;
         byte[] bytes;
         InputStream inputStream;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
         inputStream = part.getInputStream();
         picture = new Picture();
-
         bufferedImage = pixelizatingImage(inputStream);
 
-        ImageIO.write(bufferedImage, "png", baos);
+        ImageIO.write(bufferedImage, "jpg", baos);
 
         bytes = baos.toByteArray();
         imageInString = Base64.encodeBase64String(bytes);

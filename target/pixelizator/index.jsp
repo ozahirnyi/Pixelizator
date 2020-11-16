@@ -1,5 +1,6 @@
 <html>
 <link rel="stylesheet" href="cssPage.css">
+<link rel="icon" href="data:;base64,=">
 
 <head>
     <meta charset="UTF-8">
