@@ -5,16 +5,28 @@
 }
 
 body {
-    background: linear-gradient(to right, dodgerblue, wheat, wheat, yellow);
+    padding: 33px;
+    background: linear-gradient(to right, mediumpurple, wheat, mediumaquamarine);
+}
+
+#applyButton {
+    padding-right: 13px;
+    padding-left: 13px;
+    margin-top: 5px;
+}
+
+#fileUploader {
+    margin-top: 5px;
+}
+
+.download {
+    margin-top: 15px;
 }
 
 img {
-    min-height: 300px;
-    min-width: 300px;
-    max-width: 500px;
-    max-height: 500px;
-}
-
-.form {
-    padding: 10px;
+    min-height: 400px;
+    min-width: 400px;
+    max-width: 400px;
+    max-height: 400px;
+    background: linear-gradient(to right, mediumpurple, mediumaquamarine);
 }

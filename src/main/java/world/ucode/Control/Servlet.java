@@ -19,6 +19,7 @@ import world.ucode.Model.Picture;
 @WebServlet("/upload")
 @MultipartConfig
 public class Servlet extends HttpServlet {
+    private static double[] pixel = new double[4];
     private Gson gson = new Gson();
     private PrintWriter printWriter;
 
@@ -26,8 +27,8 @@ public class Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         printWriter = resp.getWriter();
         Part part = req.getPart("file");
-
-        String imageJson = imageBytesToJson(part);
+        String pixSize = req.getHeader("pixSize");
+        String imageJson = imageBytesToJson(part, Integer.parseInt(pixSize));
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
@@ -35,37 +36,36 @@ public class Servlet extends HttpServlet {
         printWriter.close();
     }
 
-    private BufferedImage pixelizatingImage(InputStream inputStream) throws IOException {
-        BufferedImage bufferedImage = ImageIO.read(inputStream);
-        Raster src = bufferedImage.getData();
-        WritableRaster dest = src.createCompatibleWritableRaster();
-
-        for (int y = 0; y < src.getHeight(); y += 5) {
-            for (int x = 0; x < src.getWidth(); x += 5) {
-                double[] pixel = new double[4];
-                pixel = src.getPixel(x, y, pixel);
-                for (int yd = y; (yd < y + 5) && (yd < dest.getHeight()); yd++) {
-                    for (int xd = x; (xd < x + 5) && (xd < dest.getWidth()); xd++) {
+    private void pixelizatingImageKubes(Raster src, WritableRaster dest, int pixSize) throws IOException {
+        for (int y = 0; y < src.getHeight(); y += pixSize) {
+            for (int x = 0; x < src.getWidth(); x += pixSize) {
+                src.getPixel(x, y, pixel);
+                for (int yd = y; (yd < y + pixSize) && (yd < dest.getHeight()); yd++) {
+                    for (int xd = x; (xd < x + pixSize) && (xd < dest.getWidth()); xd++) {
                         dest.setPixel(xd, yd, pixel);
                     }
                 }
             }
         }
+    }
+
+    private BufferedImage pixelizatingImage(InputStream inputStream, int pixSize) throws IOException {
+        BufferedImage bufferedImage = ImageIO.read(inputStream);
+        Raster src = bufferedImage.getData();
+        WritableRaster dest = src.createCompatibleWritableRaster();
+
+        pixelizatingImageKubes(src, dest, pixSize);
         bufferedImage.setData(dest);
         return bufferedImage;
     }
 
-    String imageBytesToJson(Part part) throws IOException {
-        BufferedImage bufferedImage = null;
+    String imageBytesToJson(Part part, int pixSize) throws IOException {
         String imageInString;
-        Picture picture;
+        Picture picture = new Picture();
         byte[] bytes;
-        InputStream inputStream;
+        InputStream inputStream = part.getInputStream();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        inputStream = part.getInputStream();
-        picture = new Picture();
-
-        bufferedImage = pixelizatingImage(inputStream);
+        BufferedImage bufferedImage = pixelizatingImage(inputStream, pixSize);
 
         ImageIO.write(bufferedImage, "png", baos);
 
