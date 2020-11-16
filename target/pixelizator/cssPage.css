@@ -8,12 +8,12 @@ body {
     background: linear-gradient(to right, dodgerblue, wheat, wheat, yellow);
 }
 
-/*img {*/
-/*    min-height: 300px;*/
-/*    min-width: 300px;*/
-/*    max-width: 500px;*/
-/*    max-height: 500px;*/
-/*}*/
+img {
+    min-height: 300px;
+    min-width: 300px;
+    max-width: 500px;
+    max-height: 500px;
+}
 
 .form {
     padding: 10px;
