@@ -5,8 +5,21 @@
 }
 
 body {
+    font-family: "Bradley Hand", cursive;
     padding: 33px;
-    background: linear-gradient(to right, mediumpurple, wheat, mediumaquamarine);
+    background-image: url("images/background4.jpg");
+}
+
+.firstImageBlock {
+    margin-top: 50px;
+    margin-left: 15%;
+    margin-right: 85%;
+}
+
+.secondImageBlock {
+    margin-top: 50px;
+    margin-right: 15%;
+    margin-left: 45%;
 }
 
 #applyButton {
@@ -24,9 +37,10 @@ body {
 }
 
 img {
+    padding: 5px;
     min-height: 400px;
     min-width: 400px;
     max-width: 400px;
     max-height: 400px;
-    background: linear-gradient(to right, mediumpurple, mediumaquamarine);
+    background: linear-gradient(135deg, rgba(92,193,234,.2), rgba(143,115,210,.9), rgba(222,133,134,.9));
 }

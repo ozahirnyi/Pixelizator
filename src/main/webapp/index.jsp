@@ -11,7 +11,7 @@
 <body>
 <h1>Pixelizator offline</h1>
 <div class="input">
-    <label class="forformelem " name="UPLOAD" for="fileUploader">
+    <label class="forformelem " for="fileUploader">
         Choose image to upload
     </label><br>
     <input type="file" value="upload" id="fileUploader" name="file" accept="image/*" width="500" height="600" onchange="updateImageDisplay">
@@ -24,6 +24,8 @@
     <div class="download">
     <label for="types">Download type:</label>
     <select name="type" id="types">
+        <option value="tiff">tiff</option>
+        <option value="bmp">bmp</option>
         <option value="png">png</option>
         <option value="jpeg">jpeg</option>
         <option value="jpg">jpg</option>
@@ -31,13 +33,12 @@
     <button id="downloadBtn">download</button>
     </div>
 </div>
-<div class="mainDiv">
-    <div class="contentImg">
+    <div class="firstImageBlock">
         <img class="img1" id="forInput" src="" alt="Input">
-        <p></p>
+    </div>
+    <div class="secondImageBlock">
         <img class="img2" id="forOutput" src="" alt="Output">
     </div>
-</div>
 <script src="js/fetch.js"></script>
 </body>
 </html>
