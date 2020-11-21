@@ -30,8 +30,6 @@ public class Servlet extends HttpServlet {
         String pixSize = req.getHeader("pixSize");
         String imageJson = imageBytesToJson(part, Integer.parseInt(pixSize));
 
-        System.out.println(pixSize);
-
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         printWriter.print(imageJson);

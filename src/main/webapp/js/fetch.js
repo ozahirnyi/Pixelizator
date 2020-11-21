@@ -27,9 +27,11 @@ applyBtn.addEventListener('click', async function () {
     const fileField = document.querySelector('input[type="file"]');
 
     if (fileField.files[0] != null && fileField.files[0].size > 0) {
-        let pixSize = Math.floor(document.getElementById("pixSize").value);
-        if (pixSize <= 0 || !isDigit(pixSize) || pixSize > 2147483647)
+        const pixSize = document.getElementById("pixSize").value;
+
+        if (pixSize.match('[^0-9]') || Math.floor(pixSize) > 2147483647 || pixSize == 0) {
             alert("Choose 'Pixel size' from 1 to maximum of your image size");
+        }
         else {
             formData.append("file", fileField.files[0]);
             try {
