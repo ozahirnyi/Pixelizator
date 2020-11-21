@@ -34,7 +34,7 @@ Fetch
 
 2. Input Pixel size
 
-3 Press 'Pixelizate'
+3. Press 'Pixelizate'
 
 ## Contributing
 Catch your feedbacks with pleasure :)
