@@ -44,5 +44,7 @@ Catch your feedbacks with pleasure :)
 
 ## Screens
 
-<img src="screen1.png" width="350" title="hover text">
+<img src="screen1.png"><br>
+<img src="screen2.png"><br>
+<img src="screen3.png"><br>
 
