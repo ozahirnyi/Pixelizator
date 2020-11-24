@@ -28,10 +28,12 @@ applyBtn.addEventListener('click', async function () {
 
     if (fileField.files[0] != null && fileField.files[0].size > 0) {
         const pixSize = document.getElementById("pixSize").value;
+        const pixRegex = new RegExp('[1-9]{1}[0-9]*');
+        let regexResult = pixSize.match(pixRegex);
 
-        if (pixSize.match('[^0-9]') || Math.floor(pixSize) > 2147483647 || pixSize == 0) {
+        if (regexResult === null || regexResult[0].length !== pixSize.length
+            || pixSize > 2147483647)
             alert("Choose 'Pixel size' from 1 to maximum of your image size");
-        }
         else {
             formData.append("file", fileField.files[0]);
             try {

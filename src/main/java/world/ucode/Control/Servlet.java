@@ -19,13 +19,12 @@ import world.ucode.Model.Picture;
 @WebServlet("/upload")
 @MultipartConfig
 public class Servlet extends HttpServlet {
-    private static double[] pixel = new double[4];
-    private Gson gson = new Gson();
-    private PrintWriter printWriter;
+    private static final double[] pixel = new double[4];
+    private final Gson gson = new Gson();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        printWriter = resp.getWriter();
+        PrintWriter printWriter = resp.getWriter();
         Part part = req.getPart("file");
         String pixSize = req.getHeader("pixSize");
         String imageJson = imageBytesToJson(part, Integer.parseInt(pixSize));
@@ -36,7 +35,7 @@ public class Servlet extends HttpServlet {
         printWriter.close();
     }
 
-    private void pixelizatingImageKubes(Raster src, WritableRaster dest, int pixSize) throws IOException {
+    private void pixelizatingImageKubes(Raster src, WritableRaster dest, int pixSize) {
         for (int y = 0; y < src.getHeight(); y += pixSize) {
             for (int x = 0; x < src.getWidth(); x += pixSize) {
                 src.getPixel(x, y, pixel);
@@ -72,8 +71,6 @@ public class Servlet extends HttpServlet {
         bytes = baos.toByteArray();
         imageInString = Base64.encodeBase64String(bytes);
         picture.setImage(imageInString);
-
-        String json = gson.toJson(picture);
-        return json;
+        return gson.toJson(picture);
     }
 }
