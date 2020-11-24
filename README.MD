@@ -34,10 +34,17 @@ Fetch
 
 2. Input Pixel size
 
-3 Press 'Pixelizate'
+3. Press 'Pixelizate'
 
 ## Contributing
 Catch your feedbacks with pleasure :)
 
 ## License
 [UCode]
+
+## Screens
+
+<img src="screen1.png"><br>
+<img src="screen2.png"><br>
+<img src="screen3.png"><br>
+
